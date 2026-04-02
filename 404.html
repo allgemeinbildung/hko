@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inhalt umgezogen</title>
+  <style>
+    body { margin:0; min-height:100vh; display:grid; place-items:center; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:#f4f5f7; color:#111827; padding:24px; box-sizing:border-box; }
+    .card { max-width:680px; width:100%; background:#fff; border:1px solid #d1d5db; border-radius:12px; padding:24px; }
+    h1 { margin-top:0; margin-bottom:8px; font-size:1.35rem; }
+    p { margin:0 0 10px 0; line-height:1.45; }
+    .target { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; background:#f3f4f6; border-radius:8px; padding:8px 10px; margin:12px 0 0 0; word-break:break-all; }
+    .btn { display:inline-block; margin-top:16px; padding:10px 14px; border-radius:8px; text-decoration:none; background:#1d4ed8; color:#fff; font-weight:600; }
+    .meta { margin-top:10px; color:#4b5563; font-size:0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Der Inhalt ist umgezogen</h1>
+    <p>Diese GitHub-Seite wird nicht mehr aktiv genutzt.</p>
+    <p>Du wirst automatisch zur neuen Adresse weitergeleitet:</p>
+    <div class="target" id="target"></div>
+    <a class="btn" id="manual-link" href="https://abu-hko.ch/">Jetzt öffnen</a>
+    <p class="meta">Automatische Weiterleitung in <span id="countdown">4</span> Sekunden.</p>
+  </main>
+  <script>
+    (function () {
+      var target = "https://abu-hko.ch/";
+      var remaining = 4;
+      document.getElementById("target").textContent = target;
+      document.getElementById("manual-link").href = target;
+      var countdownEl = document.getElementById("countdown");
+      var timer = window.setInterval(function () {
+        remaining -= 1;
+        countdownEl.textContent = String(remaining);
+        if (remaining <= 0) {
+          window.clearInterval(timer);
+          window.location.replace(target);
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>
